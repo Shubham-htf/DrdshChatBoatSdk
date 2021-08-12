@@ -1,5 +1,5 @@
-package com.htf.drdshsdklibrary.Utills
 
+import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.view.Gravity
@@ -13,9 +13,9 @@ import com.htf.drdshsdklibrary.PhotoViewer.TouchImageView
 import com.htf.drdshsdklibrary.R
 import com.squareup.picasso.Picasso
 
-class ImageFullView (rootView: View, imageUrl: String) :
+class ImageFullView(rootView: View, imageUrl: String, currActivity: Activity) :
     PopupWindow(
-        (MyApplication.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
+        (currActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
             R.layout.popup_photo_full,
             null
         ), ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT

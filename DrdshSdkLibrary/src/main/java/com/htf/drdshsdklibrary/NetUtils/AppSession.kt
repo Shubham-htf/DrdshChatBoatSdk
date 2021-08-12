@@ -1,9 +1,7 @@
 package com.htf.learnchinese.utils
 
 
-import android.provider.Settings
 import com.github.nkzawa.socketio.client.Socket
-import com.htf.drdshsdklibrary.Utills.MyApplication
 
 class AppSession {
 

@@ -16,7 +16,6 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
-import android.os.Environment
 import android.provider.Settings
 import android.text.Html
 import android.util.Base64
@@ -39,7 +38,6 @@ import java.net.InetAddress
 import java.net.NetworkInterface
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.sql.Time
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -544,10 +542,10 @@ object AppUtils {
 
     }
 
-    fun getMimeType(uri: Uri?): String? {
+    fun getMimeType(uri: Uri?, currActivity: Activity): String? {
         var mimeType: String? = null
         mimeType = if (uri?.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-            val cr: ContentResolver = MyApplication.getAppContext().contentResolver
+            val cr: ContentResolver = currActivity.contentResolver
             cr.getType(uri!!)
         } else {
             val fileExtension = MimeTypeMap.getFileExtensionFromUrl(
@@ -561,14 +559,14 @@ object AppUtils {
         return mimeType
     }
 
-    fun getFileSize(scheme:String,uri: Uri?):Long{
+    fun getFileSize(scheme: String, uri: Uri?, currActivity: Activity):Long{
         var dataSize=0
         var size:Long=0
         if(scheme.equals(ContentResolver.SCHEME_CONTENT))
         {
             try {
-                val fileInputStream=MyApplication.getAppContext().getContentResolver().openInputStream(uri!!);
-                dataSize = fileInputStream!!.available();
+                val fileInputStream=currActivity.contentResolver.openInputStream(uri!!);
+                dataSize = fileInputStream!!.available()
             } catch (e:Exception) {
                 e.printStackTrace();
             }

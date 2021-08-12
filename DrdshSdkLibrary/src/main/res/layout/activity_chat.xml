@@ -5,6 +5,14 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ImageView
+        android:id="@+id/ivDrawable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ImageView>
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:id="@+id/constraint_main"
@@ -278,7 +286,7 @@
             android:padding="15dp"
             android:visibility="gone"
             android:gravity="center"
-            android:background="@color/colorGrey"
+            android:background="@color/colorLine"
             android:translationZ="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -314,13 +322,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ivDrawable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="1dp">
-        </ImageView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

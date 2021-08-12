@@ -1,8 +1,8 @@
 package com.htf.drdshsdklibrary.PhotoViewer
 
 
+import android.app.Activity
 import android.content.Context.LAYOUT_INFLATER_SERVICE
-
 import android.os.Build
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -10,15 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.htf.drdshsdklibrary.R
-import com.htf.drdshsdklibrary.Utills.MyApplication
-
 import com.squareup.picasso.Picasso
 import java.io.File
 
 
-class PhotoFullPopupWindow(rootView: View, file:File) :
+class PhotoFullPopupWindow(rootView: View, file: File, currActivity: Activity) :
     PopupWindow(
-        (MyApplication.getAppContext().getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
+        (currActivity.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
             R.layout.popup_photo_full,
             null
         ), ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT

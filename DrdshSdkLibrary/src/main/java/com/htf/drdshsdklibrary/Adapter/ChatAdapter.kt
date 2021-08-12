@@ -1,9 +1,9 @@
 package com.htf.drdshsdklibrary.Adapter
 
+import ImageFullView
 import android.app.Activity
 import android.content.Context
 import android.os.Environment
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,14 +17,12 @@ import com.htf.drdshsdklibrary.Utills.AppUtils
 import com.htf.drdshsdklibrary.Utills.Constants
 import com.htf.drdshsdklibrary.Utills.Constants.ATTACHMENT_URL
 
-import com.htf.drdshsdklibrary.Utills.ImageFullView
 import com.htf.learnchinese.utils.AppPreferences
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_incoming_msg.view.*
 import kotlinx.android.synthetic.main.row_info_msg.view.*
 import kotlinx.android.synthetic.main.row_outgoing_msg.view.*
 import java.io.File
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ChatAdapter(private val currActivity:Activity,
@@ -109,9 +107,9 @@ class ChatAdapter(private val currActivity:Activity,
 
                 holder.itemView.ivOutgoingMsg.setOnClickListener {
                         if (model.isLocal){
-                            PhotoFullPopupWindow(holder.itemView,model.tempFile!!)
+                            PhotoFullPopupWindow(holder.itemView,model.tempFile!!,currActivity)
                         } else{
-                            ImageFullView(holder.itemView,ATTACHMENT_URL+ model.attachmentFile!!)
+                            ImageFullView(holder.itemView,ATTACHMENT_URL+ model.attachmentFile!!,currActivity)
                         }
                 }
 
@@ -180,7 +178,7 @@ class ChatAdapter(private val currActivity:Activity,
 
                 holder.itemView.ivIncomingImage.setOnClickListener {
                     if (model.attachmentFile?.isFileDownloaded(currActivity)!!){
-                        PhotoFullPopupWindow(holder.itemView,model.tempFile!!)
+                        PhotoFullPopupWindow(holder.itemView, model.tempFile!!, currActivity)
                     }
                 }
 

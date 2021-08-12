@@ -13,7 +13,6 @@ import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -21,7 +20,6 @@ import android.os.CountDownTimer
 import android.os.Environment
 import android.text.Editable
 import android.text.TextWatcher
-import android.transition.Visibility
 import android.util.Base64
 import android.util.Log
 import android.view.Gravity
@@ -36,7 +34,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.github.nkzawa.emitter.Emitter
 import com.github.nkzawa.socketio.client.Ack
 import com.github.nkzawa.socketio.client.IO
@@ -65,14 +62,12 @@ import droidninja.filepicker.BuildConfig
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.dialog_close_chat.view.*
 import kotlinx.android.synthetic.main.dialog_close_chat.view.btnCloseChat
 import kotlinx.android.synthetic.main.dialog_email.view.*
 import kotlinx.android.synthetic.main.dialog_for_offline_msg.view.*
 import kotlinx.android.synthetic.main.dialog_rate.view.*
 import kotlinx.android.synthetic.main.row_incoming_msg.view.*
-import kotlinx.android.synthetic.main.row_outgoing_msg.view.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
@@ -1403,8 +1398,8 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
                         file=compressFile(pickerFile)
                         val bytes = file?.readBytes()
                         val base64 = Base64.encodeToString(bytes,0)
-                        val mime_type=getMimeType(Uri.fromFile(file))
-                        val fileSize=getFileSize(Uri.fromFile(file).scheme!!,Uri.fromFile(file))
+                        val mime_type=getMimeType(Uri.fromFile(file),currActivity)
+                        val fileSize=getFileSize(Uri.fromFile(file).scheme!!,Uri.fromFile(file),currActivity)
 
                         val destinationFile=File(currActivity.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),file!!.name)
                         val source=FileInputStream(file).channel

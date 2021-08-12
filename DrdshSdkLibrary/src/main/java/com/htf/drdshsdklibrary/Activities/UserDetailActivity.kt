@@ -117,7 +117,6 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
                     joinChatRoom?.mobile=strMobile
                     joinChatRoom?.message=strMsg
                     AppPreferences.getInstance(currActivity).saveJoinChatRoomDetails(joinChatRoom!!)
-
                     startChat()
                 }
             }
@@ -215,6 +214,7 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
                     val joinChatRoom=Gson().fromJson<JoinChatRoom>(data.toString(),type)
                     AppPreferences.getInstance(currActivity).saveJoinChatRoomDetails(joinChatRoom)
                     ChatActivity.open(currActivity)
+                    currActivity.finish()
                 }
             }
 
@@ -275,6 +275,7 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
                             etMobile.setText("")
                             etQuestion.setText("")
                             ChatActivity.open(currActivity)
+                            currActivity.finish()
                         } catch (e: JSONException) {
                             e.printStackTrace()
                         }
@@ -301,10 +302,12 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
             }
             Constants.CHAT_IN_WAITING_MODE->{
                 ChatActivity.open(currActivity)
+                currActivity.finish()
             }
 
             Constants.CHAT_IN_CONNECTED_MODE->{
                 ChatActivity.open(currActivity)
+                currActivity.finish()
             }
         }
 
