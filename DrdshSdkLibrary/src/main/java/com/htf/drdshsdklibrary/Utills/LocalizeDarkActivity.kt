@@ -59,7 +59,7 @@ open class LocalizeDarkActivity : AppCompatActivity() {
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
 
-        val v = currentFocus
+       /* val v = currentFocus
 
         if (v != null &&
                 (ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE) &&
@@ -72,7 +72,7 @@ open class LocalizeDarkActivity : AppCompatActivity() {
 
             if (x < v.left || x > v.right || y < v.top || y > v.bottom)
                 AppUtils.hideKeyboard(this)
-        }
+        }*/
         return super.dispatchTouchEvent(ev)
     }
 

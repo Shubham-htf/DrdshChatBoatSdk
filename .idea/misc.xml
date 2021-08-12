@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/activity_chat.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/drawable-ar/bg_incoming_msg.xml" value="0.2203125" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/drawable/bg_incoming_msg.xml" value="0.2203125" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/activity_chat.xml" value="0.22" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/activity_user_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/dialog_rate.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/row_incoming_msg.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/row_info_msg.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/row_outgoing_msg.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrdshSdk/DrdshSdk/DrdshSdkLibrary/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />
         <entry key="..\:/Mishratkhan WorkSpace/DrdshSdk/DrdshSdkLibrary/src/main/res/drawable-ar/bg_incoming_msg.xml" value="0.2203125" />
         <entry key="..\:/Mishratkhan WorkSpace/DrdshSdk/DrdshSdkLibrary/src/main/res/drawable/bg_incoming_msg.xml" value="0.2203125" />
         <entry key="..\:/Mishratkhan WorkSpace/DrdshSdk/DrdshSdkLibrary/src/main/res/drawable/bg_toast_success.xml" value="0.2203125" />

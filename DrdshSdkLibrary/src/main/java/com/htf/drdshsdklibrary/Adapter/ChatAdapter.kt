@@ -133,10 +133,10 @@ class ChatAdapter(private val currActivity:Activity,
 
 
                 when {
-                    model.readAt != null -> {
+                    model.readAt != "" -> {
                         holder.itemView.ivSent.setImageResource(R.drawable.ic_delivered)
                     }
-                    model.deliveredAt != null -> {
+                    model.deliveredAt != "" -> {
                         holder.itemView.ivSent.setImageResource(R.drawable.ic_seen)
                     }
                     else -> {
@@ -192,6 +192,7 @@ class ChatAdapter(private val currActivity:Activity,
                     }
                 }
             }
+
             VIEW_TYPE_INFO_MESSAGE->{
                 holder as InfoViewHolder
                 when {

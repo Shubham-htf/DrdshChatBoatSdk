@@ -10,6 +10,7 @@
     <com.github.siyamed.shapeimageview.CircularImageView
         android:layout_width="50dp"
         android:id="@+id/ivAgent"
+        android:visibility="gone"
         android:layout_height="50dp"
         android:src="@drawable/user"/>
 

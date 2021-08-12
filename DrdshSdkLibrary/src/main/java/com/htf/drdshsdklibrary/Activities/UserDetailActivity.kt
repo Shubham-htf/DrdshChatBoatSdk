@@ -83,7 +83,7 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
         setContentView(R.layout.activity_user_detail)
         setListener()
         getExtra()
-        tvCloseChat.visibility=View.VISIBLE
+        tvCloseChat.visibility=View.GONE
         val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
         this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag")
         this.mWakeLock!!.acquire(10*60*1000L /*10 minutes*/)
@@ -344,7 +344,7 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
                 isValid=false
                 AppUtils.showSnackBar(currActivity,tvError,getString(R.string.name_required))
             }
-            RegExp.chkEmpty(strEmail)->{
+   /*         RegExp.chkEmpty(strEmail)->{
                 isValid=false
                 AppUtils.showSnackBar(currActivity,tvError,getString(R.string.email_required))
             }
@@ -360,6 +360,7 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
                 isValid=false
                 AppUtils.showSnackBar(currActivity,tvError,getString(R.string.mobile_invalid))
             }
+            */
             RegExp.chkEmpty(strMsg)->{
                 isValid=false
                 AppUtils.showSnackBar(currActivity,tvError,getString(R.string.message_required))

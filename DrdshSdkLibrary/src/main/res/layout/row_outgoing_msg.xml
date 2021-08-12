@@ -97,6 +97,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/ivUser"
+        android:visibility="gone"
         android:src="@drawable/user"/>
 
 

@@ -97,16 +97,18 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        verifyIdentity=AppPreferences.getInstance(currActivity).getIdentityDetails()
         val window: Window = this.window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor=(ContextCompat.getColor(this, R.color.colorDark))
+        window.statusBarColor = Color.parseColor(verifyIdentity?.embeddedChat?.topBarBgColor)
         setContentView(R.layout.activity_chat)
         setListener()
         initRecycler()
-        verifyIdentity=AppPreferences.getInstance(currActivity).getIdentityDetails()
+
         setEmbeddedChat()
         visitorLoadChatHistory()
 
@@ -384,182 +386,228 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
         mAdapter= ChatAdapter(currActivity,arrMessage)
         recycler.layoutManager=mLayout
         recycler.adapter=mAdapter
+        etMessage.setOnFocusChangeListener{ v, hasFocus ->
+            if (hasFocus) {
+                if (arrMessage.size>0)
+                    recycler.scrollToPosition(arrMessage.size - 1)
+            }
+        }
+        recycler.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+            if (bottom < oldBottom) {
+                if(arrMessage.size>0){
+                    recycler.smoothScrollToPosition(arrMessage.size-1)
+                }
+            }
+
+        }
+
     }
 
     private fun  openDropOfflineMessageDialog(dataMessage: String?) {
-        val builder = AlertDialog.Builder(currActivity)
-        val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_for_offline_msg, null)
-        builder.setView(dialogView)
-        builder.setCancelable(true)
-        val dialog = builder.show()
-        var strName=""
-        var strEmail=""
-        var strMobile=""
-        var strSubject=""
-        var strMsg=""
+        try {
+            val builder = AlertDialog.Builder(currActivity)
+            val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_for_offline_msg, null)
+            builder.setView(dialogView)
+            builder.setCancelable(true)
+            val dialog = builder.show()
+            var strName=""
+            var strEmail=""
+            var strMobile=""
+            var strSubject=""
+            var strMsg=""
 
-        dialogView.btnSendMessage.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
+            dialogView.btnSendMessage.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
 
-        val myAnim = AnimationUtils.loadAnimation(currActivity, R.anim.slide_up)
-        dialogView.startAnimation(myAnim)
+            val myAnim = AnimationUtils.loadAnimation(currActivity, R.anim.slide_up)
+            dialogView.startAnimation(myAnim)
 
 
-        dialogView.tvWaitingMessage.text=dataMessage
+            dialogView.tvWaitingMessage.text=dataMessage
 
-        dialogView.btnSendMessage.setOnClickListener {
-              strName=dialogView.etFullName.text.toString().trim()
-              strEmail=dialogView.etEmail.text.toString().trim()
-              strMobile=dialogView.etMobile.text.toString().trim()
-              strSubject=dialogView.etSubject.text.toString().trim()
-              strMsg=dialogView.etQuestion.text.toString().trim()
+            dialogView.btnSendMessage.setOnClickListener {
+                strName=dialogView.etFullName.text.toString().trim()
+                strEmail=dialogView.etEmail.text.toString().trim()
+                strMobile=dialogView.etMobile.text.toString().trim()
+                strSubject=dialogView.etSubject.text.toString().trim()
+                strMsg=dialogView.etQuestion.text.toString().trim()
 
-              when {
-                  strName=="" -> {
-                      AppUtils.showToast(this.currActivity,getString(R.string.name_required),true)
+                when {
+                    strName=="" -> {
+                        AppUtils.showToast(this.currActivity,getString(R.string.name_required),true)
 
-                  }
-                  strEmail=="" -> {
-                      AppUtils.showToast(this.currActivity,getString(R.string.email_id_requied),true)
+                    }
+                    strEmail=="" -> {
+                        AppUtils.showToast(this.currActivity,getString(R.string.email_id_requied),true)
 
-                  }
-                  strMobile=="" -> {
-                      AppUtils.showToast(this.currActivity,getString(R.string.mobile_required),true)
+                    }
+                    strMobile=="" -> {
+                        AppUtils.showToast(this.currActivity,getString(R.string.mobile_required),true)
 
-                  }
-                  strSubject=="" -> {
-                      AppUtils.showToast(this.currActivity,getString(R.string.subject_required),true)
+                    }
+                    strSubject=="" -> {
+                        AppUtils.showToast(this.currActivity,getString(R.string.subject_required),true)
 
-                  }
-                  strMsg=="" -> {
-                      AppUtils.showToast(this.currActivity,getString(R.string.message_required),true)
+                    }
+                    strMsg=="" -> {
+                        AppUtils.showToast(this.currActivity,getString(R.string.message_required),true)
 
-                  }
-                  else -> {
-                      sendOfflineMessage(dialog,strName,strEmail,strMobile,strSubject,strMsg)
-                  }
-              }
-          }
+                    }
+                    else -> {
+                        sendOfflineMessage(dialog,strName,strEmail,strMobile,strSubject,strMsg)
+                    }
+                }
+            }
 
-        val window = dialog.window
-        window!!.setLayout(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT)
-        window.setGravity(Gravity.CENTER)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
+            val window = dialog.window
+            window!!.setLayout(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT)
+            window.setGravity(Gravity.CENTER)
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+
+        }catch (e:Exception){
+
+        }
+
     }
 
 
     private fun openRateDialog(type:Int){
-        val builder = AlertDialog.Builder(currActivity)
-        val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_rate, null)
-        builder.setView(dialogView)
-        builder.setCancelable(true)
-        val dialog = builder.show()
+        try {
+            val builder = AlertDialog.Builder(currActivity)
+            val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_rate, null)
+            builder.setView(dialogView)
+            builder.setCancelable(true)
+            val dialog = builder.show()
 
-        dialogView.tvRate.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
+            dialogView.tvRate.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
 
-        when(type){
-            TYPE_DISLIKE->{
-                dialogView.ivLikeDislike.setImageResource(R.drawable.dislike)
+            var feedbackStatus="Good"
+            var feedback=""
+
+            when(type){
+                TYPE_DISLIKE->{
+                    dialogView.ivLikeDislike.setImageResource(R.drawable.dislike)
+                    feedbackStatus="bed"
+                }
+                TYPE_LIKE->{
+                    dialogView.ivLikeDislike.setImageResource(R.drawable.like)
+                    feedbackStatus="Good"
+                }
             }
-            TYPE_LIKE->{
-                dialogView.ivLikeDislike.setImageResource(R.drawable.like)
+            dialogView.tvRate.setOnClickListener {
+                feedback=dialogView.etRate.text.toString().trim()
+                updateVisitorRating(feedback,dialog)
             }
+
+
+            val window = dialog.window
+            window!!.setLayout(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            )
+            window.setGravity(Gravity.CENTER)
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+
+        }catch (e:Exception){
+
         }
-
-        val window = dialog.window
-        window!!.setLayout(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-        window.setGravity(Gravity.CENTER)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
 
     }
 
     private fun openCloseChatDialog(type: Int, currActivity: Activity) {
-        val builder = AlertDialog.Builder(currActivity)
-        val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_close_chat, null)
-        builder.setView(dialogView)
-        builder.setCancelable(true)
-        val dialog = builder.show()
+        try {
+            val builder = AlertDialog.Builder(currActivity)
+            val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_close_chat, null)
+            builder.setView(dialogView)
+            builder.setCancelable(true)
+            val dialog = builder.show()
 
-        var feedbackStatus="Good"
-        var feedback=""
+            var feedbackStatus="Good"
+            var feedback=""
 
-        dialogView.btnCloseChat.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
+            dialogView.btnCloseChat.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
 
-        dialogView.ivThumbUp.setOnClickListener {
-            dialogView.ivThumbUp.setImageResource(R.drawable.thumbup)
-            dialogView.ivThumbDown.setImageResource(R.drawable.dislike)
-            feedbackStatus="Good"
-        }
+            dialogView.ivThumbUp.setOnClickListener {
+                dialogView.ivThumbUp.setImageResource(R.drawable.thumbup)
+                dialogView.ivThumbDown.setImageResource(R.drawable.dislike)
+                feedbackStatus="Good"
+            }
 
-        dialogView.ivThumbDown.setOnClickListener {
-            dialogView.ivThumbUp.setImageResource(R.drawable.like)
-            dialogView.ivThumbDown.setImageResource(R.drawable.thums_down)
-            feedbackStatus="bed"
-        }
-        dialogView.btnCloseChat.setOnClickListener {
-            feedback=dialogView.etFeedback.text.toString().trim()
-            when(type){
-                Constants.ALERT_TYPE_CLOSE_CHAT->{
-                    if (feedback!=""){
-                        visitorEndChatSession(feedbackStatus,feedback,dialog)
-                    }else{
-                        AppUtils.showToast(this.currActivity,getString(R.string.feedback_requied),true)
+            dialogView.ivThumbDown.setOnClickListener {
+                dialogView.ivThumbUp.setImageResource(R.drawable.like)
+                dialogView.ivThumbDown.setImageResource(R.drawable.thums_down)
+                feedbackStatus="bed"
+            }
+            dialogView.btnCloseChat.setOnClickListener {
+                feedback=dialogView.etFeedback.text.toString().trim()
+                when(type){
+                    Constants.ALERT_TYPE_CLOSE_CHAT->{
+                        if (feedback!=""){
+                            visitorEndChatSession(feedbackStatus,feedback,dialog)
+                        }else{
+                            AppUtils.showToast(this.currActivity,getString(R.string.feedback_requied),true)
+                        }
+                    }
+                    Constants.ALERT_TYPE_CHAT_RATING->{
+                        updateVisitorRating(feedbackStatus,dialog)
                     }
                 }
-                Constants.ALERT_TYPE_CHAT_RATING->{
-                    updateVisitorRating(feedbackStatus,dialog)
-                }
             }
+
+
+            val window = dialog.window
+            window!!.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+            window.setGravity(Gravity.BOTTOM)
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+        }catch (e:java.lang.Exception){
+
         }
 
-
-        val window = dialog.window
-        window!!.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
-        window.setGravity(Gravity.BOTTOM)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
 
     }
 
     private fun openMailDialog(type: Int, currActivity: Activity){
+        try {
+            val builder = AlertDialog.Builder(currActivity)
+            val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_email, null)
+            builder.setView(dialogView)
+            builder.setCancelable(true)
+            val dialog = builder.show()
+            var emailId=""
 
-        val builder = AlertDialog.Builder(currActivity)
-        val dialogView = currActivity.layoutInflater.inflate(R.layout.dialog_email, null)
-        builder.setView(dialogView)
-        builder.setCancelable(true)
-        val dialog = builder.show()
-        var emailId=""
+            dialogView.tvEmailSend.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
 
-        dialogView.tvEmailSend.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
-
-        dialogView.tvEmailSend.setOnClickListener {
-            emailId=dialogView.etEmailId.text.toString().trim()
-            when(type){
-                Constants.ALERT_TYPE_SEND_EMAIL->{
-                    if (emailId!=""){
-                        emailChatTranscript(emailId,dialog)
-                    }else{
-                        AppUtils.showToast(this.currActivity,getString(R.string.email_id_requied),true)
+            dialogView.tvEmailSend.setOnClickListener {
+                emailId=dialogView.etEmailId.text.toString().trim()
+                when(type){
+                    Constants.ALERT_TYPE_SEND_EMAIL->{
+                        if (emailId!=""){
+                            emailChatTranscript(emailId,dialog)
+                        }else{
+                            AppUtils.showToast(this.currActivity,getString(R.string.email_id_requied),true)
+                        }
                     }
                 }
             }
+
+            dialogView.tvCloseEmail.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            val window = dialog.window
+            window!!.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+            window.setGravity(Gravity.CENTER)
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+        }catch (e:Exception){
+
         }
 
-        dialogView.tvCloseEmail.setOnClickListener {
-            dialog.dismiss()
-        }
 
-        val window = dialog.window
-        window!!.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
-        window.setGravity(Gravity.CENTER)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
 
     }
 
@@ -910,15 +958,14 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
                             it.deliveredAt=chat.deliveredAt
                             it.message=chat.message!!
                         }
-                        mAdapter.notifyDataSetChanged()
                     }
+                    mAdapter.notifyDataSetChanged()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
-
     //Read Listener
     private var isReadListener: Emitter.Listener = Emitter.Listener { args ->
         currActivity.runOnUiThread {
@@ -932,8 +979,8 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
                             it.readAt=chat.readAt
                             it.message=chat.message!!
                         }
-                        mAdapter.notifyDataSetChanged()
                     }
+                    mAdapter.notifyDataSetChanged()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
