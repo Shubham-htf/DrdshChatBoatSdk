@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_toast_error"
+        android:layout_centerInParent="true"
+        android:text="sadksadhaskd"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/gilroy_medium"
+        android:textSize="12sp"
+        android:id="@+id/tvToast"/>
+
+
+</RelativeLayout>

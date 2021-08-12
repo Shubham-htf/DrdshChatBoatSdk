@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noConnection">No Internet Connection available.</string>
+    <string name="turnOnInternet">Turn On your Internet !!</string>
+    <string name="mobileData">Mobile data</string>
+    <string name="wifi">WIFI</string>
+    <string name="server_error">Sorry Server is facing some technical issues. please try after some time.</string>
+    <string name="chat">Chat</string>
+    <string name="close_chat">Close Chat</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="type_your_question_or_message">Type your question or message</string>
+    <string name="start_chat">Start Chat</string>
+    <string name="to_help_us_serve_you_better_please_provide_some_information_concerning_you_chat_experience">To help us serve you better,please provide some information concerning you chat experience.</string>
+    <string name="rate_your_chat_experience">Rate your chat experience</string>
+    <string name="send">Send</string>
+    <string name="please_input_your_email_address">Please Input Your Email Address</string>
+    <string name="close">Close</string>
+    <string name="app_name">DrdshSdk</string>
+    <string name="drop_a_message">Drop Message</string>
+    <string name="app_sid">appSid</string>
+    <string name="name_required">Name is required</string>
+    <string name="email_required">Email is required</string>
+    <string name="email_invalid">Email is invalid</string>
+    <string name="mobile_required">Mobile is required</string>
+    <string name="subject_required">Subject is required</string>
+    <string name="mobile_invalid">Mobile number is invalid</string>
+    <string name="message_required">Message is required</string>
+    <string name="restart_chat">Restart Chat</string>
+    <string name="no_agent_available">There are no agents available right now to take your call. Please leave a message and we will reply by email.</string>
+    <string name="feedback_requied">Feedback is required</string>
+    <string name="email_id_requied">Email is required</string>
+    <string name="visitor_start_typing">[X] start typing...</string>
+    <string name="visitor_is_typing">[X] is typing...</string>
+    <string name="visto_stop_typing">[X] stop typing...</string>
+    <string name="downloading">Downloading</string>
+    <string name="select_photo">Select Photo</string>
+    <string name="visitor_waiting">Thank you for waiting. Your call is important to us. Please hold or try again in a few of minutes.</string>
+    <string name="subject">Subject</string>
+
+    <string name="pick_image_from">Pick image from</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="please_choose_image">Please Choose Image</string>
+
+</resources>

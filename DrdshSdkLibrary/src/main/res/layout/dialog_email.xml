@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:elevation="5dp"
+            android:translationZ="5dp"
+            app:cardCornerRadius="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="25dp"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/ivRate"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/mail"/>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:textColor="@color/colorDark"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/please_input_your_email_address"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorDark"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:fontFamily="@font/gilroy_regular"
+                    android:text="@string/to_help_us_serve_you_better_please_provide_some_information_concerning_you_chat_experience"/>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_bg"
+                    android:minLines="4"
+                    android:id="@+id/etEmailId"
+                    android:maxLines="4"
+                    android:gravity="start"
+                    android:padding="10dp"
+                    android:textColor="@color/colorDark"
+                    android:fontFamily="@font/gilroy_regular"
+                    android:textSize="13sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="textMultiLine"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:id="@+id/tvCloseEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/close"
+                        android:background="@drawable/bt_button_grey"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="30dp"
+                        android:fontFamily="@font/gilroy_bold"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/colorDark"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"/>
+
+                    <TextView
+                        android:id="@+id/tvEmailSend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/send"
+                        android:background="@drawable/bt_button"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="30dp"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/gilroy_bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorWhite"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+
+
+
+

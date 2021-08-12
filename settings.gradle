@@ -1,0 +1,3 @@
+include ':DrdshSdkLibrary'
+rootProject.name='DrdshSdk'
+include ':app'

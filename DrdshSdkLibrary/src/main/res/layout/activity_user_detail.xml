@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll_main"
+    android:visibility="gone"
+    tools:context=".Activities.UserDetailActivity">
+    <include layout="@layout/toolbar"/>
+
+
+    <EditText
+        android:id="@+id/etFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/gilroy_medium"
+        android:hint="@string/full_name"
+        android:textSize="12sp"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:textColor="@color/colorDark"
+        android:textColorHint="@color/colorDark"
+        android:background="@drawable/et_bg"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="15dp"
+        android:visibility="gone"
+        android:fontFamily="@font/gilroy_medium"
+        android:hint="@string/email_address"
+        android:textSize="12sp"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:textColor="@color/colorDark"
+        android:textColorHint="@color/colorDark"
+        android:background="@drawable/et_bg"/>
+
+    <EditText
+        android:id="@+id/etMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/gilroy_medium"
+        android:hint="@string/mobile_number"
+        android:textSize="12sp"
+        android:inputType="number"
+        android:visibility="gone"
+        android:maxLines="1"
+        android:textColor="@color/colorDark"
+        android:textColorHint="@color/colorDark"
+        android:background="@drawable/et_bg"/>
+
+
+    <EditText
+        android:id="@+id/etQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/gilroy_medium"
+        android:hint="@string/type_your_question_or_message"
+        android:textSize="12sp"
+        android:inputType="textMultiLine"
+        android:layout_gravity="start"
+        android:textAlignment="viewStart"
+        android:minLines="3"
+        android:maxLines="3"
+        android:gravity="start"
+        android:textColor="@color/colorDark"
+        android:textColorHint="@color/colorDark"
+        android:background="@drawable/et_bg"/>
+
+
+    <Button
+        android:id="@+id/btnStartChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_button"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/colorWhite"
+        android:textAllCaps="false"
+        android:fontFamily="@font/gilroy_bold"
+        android:textSize="15sp"
+        android:text="@string/start_chat"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:id="@+id/tvError"/>
+
+
+
+</LinearLayout>

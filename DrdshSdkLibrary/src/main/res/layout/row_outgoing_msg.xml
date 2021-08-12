@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="end"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You"
+            android:layout_gravity="end"
+            android:textColor="@color/colorDark"
+            android:textSize="11sp"
+            android:fontFamily="@font/gilroy_regular"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_outgoing_msg"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvOutgoingMsg"
+                android:text="this is the test message..."
+                android:layout_gravity="end"
+                android:textSize="12sp"
+                android:fontFamily="@font/gilroy_regular"
+                android:textColor="@color/colorDark"/>
+
+
+            <com.github.siyamed.shapeimageview.RoundedImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                app:siRadius="10dp"
+                android:visibility="gone"
+                android:id="@+id/ivOutgoingMsg"
+                android:src="@drawable/download"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_regular"
+                    android:textSize="12sp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tvOutgoingMsgTime"
+                    android:textColor="@color/colorTextTime"
+                    android:text="21 minute ago"
+                    />
+                <ImageView
+                    android:id="@+id/ivSent"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_clock"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <com.github.siyamed.shapeimageview.CircularImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/ivUser"
+        android:src="@drawable/user"/>
+
+
+</LinearLayout>
