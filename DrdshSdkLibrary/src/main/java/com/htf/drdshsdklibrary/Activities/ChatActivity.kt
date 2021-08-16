@@ -132,7 +132,7 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
           btnDropMsg.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
           btnRestartChat.backgroundTintList = ColorStateList.valueOf(Color.parseColor(verifyIdentity?.embeddedChat?.buttonColor))
            Picasso.get().load(Constants.ATTACHMENT_MESSAGE_URL+
-                verifyIdentity?.embeddedChat?.messengerBodyImage)
+                 verifyIdentity?.embeddedChat?.messengerBodyImage)
                 .into(ivDrawable)
     }
 
