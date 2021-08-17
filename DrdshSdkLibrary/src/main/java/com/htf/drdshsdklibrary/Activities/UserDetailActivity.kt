@@ -62,12 +62,7 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
 
 
     companion object{
-        fun open(currActivity: Activity,
-                 appSid:String,
-                 locale:String,
-                 deviceID:String,
-                 domain:String
-        ){
+        fun open(currActivity: Activity, appSid:String, locale:String, deviceID:String,domain:String){
             val intent= Intent(currActivity,UserDetailActivity::class.java)
             intent.putExtra("appSid",appSid)
             intent.putExtra("locale",locale)
