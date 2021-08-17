@@ -176,7 +176,7 @@ class ChatActivity : LocalizeActivity(), View.OnClickListener{
             }
             R.id.ivAttachment->{
                 if (checkCameraPermission(currActivity, 100, null)){
-                      FilePickerBuilder.instance.setMaxCount(1).setActivityTheme(R.style.AppTheme1)
+                      FilePickerBuilder.instance.setMaxCount(1)
                     .setActivityTitle(getString(R.string.select_photo))
                     .pickPhoto(this, REQUEST_CODE_PHOTO)
                 }
