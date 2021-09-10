@@ -181,10 +181,23 @@ class UserDetailActivity : LocalizeActivity(), View.OnClickListener {
 
     private fun socketConnecting(){
         try {
-            if(mSocket==null){
-                mSocket = IO.socket("https://www.drdsh.live/")
+            if (mSocket == null ){
+                val opts =
+                    IO.Options()
+                opts.forceNew = true
+                opts.path = "/dc/socket-connect/io/socket.io"
+                mSocket = IO.socket("https://www.drdsh.live",opts)
                 mSocket!!.io().reconnection(false)
             }
+
+
+
+           /* if(mSocket==null){
+                mSocket = IO.socket("https://www.drdsh.live/")
+                mSocket!!.io().reconnection(false)
+            }*/
+
+
             if (mSocket != null) {
                 if (!mSocket!!.connected()) {
                     mSocket!!.on(Socket.EVENT_CONNECT, onConnected)

@@ -16,7 +16,9 @@ class MainActivity : AppCompatActivity() {
             this.contentResolver,
             Settings.Secure.ANDROID_ID)!!
 
-        UserDetailActivity.open(this, "5def86cf64be6d13f55f2034.5d96941bb5507599887b9c71829d5cffcdf55014", "en",
+        /* Old appS Id :: 5def86cf64be6d13f55f2034.5d96941bb5507599887b9c71829d5cffcdf55014*/
+
+        UserDetailActivity.open(this, "5def872764be6d13f55f203e.d3a138e76865367612af2c306bb38c1ce205939b", "en",
             deviceId,
         "drdsh.live")
     }
